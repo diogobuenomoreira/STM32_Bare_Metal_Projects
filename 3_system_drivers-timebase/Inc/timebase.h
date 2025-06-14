@@ -1,0 +1,17 @@
+/*
+ * timebase.h
+ *
+ *  Created on: Jun 14, 2025
+ *      Author: moreirad
+ */
+
+#ifndef TIMEBASE_H_
+#define TIMEBASE_H_
+
+#include <stdint.h>
+
+void Timebase_Init(void);
+uint32_t Get_Tick(void);
+void Delay(uint32_t delay);
+
+#endif /* TIMEBASE_H_ */
