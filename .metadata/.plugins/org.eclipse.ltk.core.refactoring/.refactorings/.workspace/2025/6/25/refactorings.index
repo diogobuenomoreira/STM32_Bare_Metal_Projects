@@ -1,0 +1,8 @@
+1749987397006	Delete resource '4_system_drivers-GPIO/Debug'
+1749987401846	Delete resource '4_system_drivers-GPIO/3_system_drivers-timebase Debug.launch'
+1749994635143	Delete resource '5_system_drivers-ADC/Debug'
+1749994639412	Delete resource '5_system_drivers-ADC/4_system_drivers-GPIO Debug.launch'
+1750010391471	Rename resource '5_system_drivers-ADC-single-conversion'
+1750010403480	Delete resource '6_system_drivers-ADC-single-conversion/Debug'
+1750010407243	Delete resource '6_system_drivers-ADC-single-conversion/5_system_drivers-ADC Debug.launch'
+1750010821334	Rename resource '5_system_drivers-ADC'

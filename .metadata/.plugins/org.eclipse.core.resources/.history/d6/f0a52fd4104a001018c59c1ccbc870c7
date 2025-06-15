@@ -1,0 +1,80 @@
+/*
+ * adc.c
+ *
+ *  Created on: Jun 15, 2025
+ *      Author: moreirad
+ */
+
+#include "stm32l4xx.h"
+#include "adc.h"
+
+#define GPIOAEN			(1U << 0U)
+#define ADCEN			(1U << 13U)
+#define ASCR_ASC1		(1U << 1U)
+#define CFGR_CONT		(1U << 13U)
+#define SEQ_LEN_1		0U
+#define CR_DEEPPWD		(1U << 29U)
+#define CR_ADVREGEN		(1U << 28U)
+#define CR_ADCAL		(1U << 31U)
+#define CR_ADEN			(1U << 0U)
+#define CR_ADSTART		(1U << 2U)
+#define ISR_EOC			(1U << 2U)
+
+
+void ADC_Init(void)
+{
+	/* Enable clock access to GPIOA */
+	RCC->AHB2ENR |= GPIOAEN;
+
+	/* Configure the ADC GPIO pin (PA1 as analog input) */
+	GPIOA->MODER |= (1U << 2U);
+	GPIOA->MODER |= (1U << 3U);
+
+	/* Connect GPIO analog switch to ADC input */
+	GPIOA->ASCR |= ASCR_ASC1;
+
+	/***** Configure ADC module *****/
+
+	/* Enable clock access to ADC */
+	RCC->AHB2ENR |= ADCEN;
+
+	/* Set ADC common clock */
+	ADC123_COMMON->CCR &= ~(1U << 16U);
+	ADC123_COMMON->CCR |= (1U << 17U);
+
+	/* Set continuous conversion mode */
+	ADC1->CFGR |= CFGR_CONT;
+
+	/* Set sequence length */
+	ADC1->SQR1 = SEQ_LEN_1;
+
+	/* Set ADC channel and rank - (PA1 is channel 6) */
+	ADC1->SQR1 |= (1U << 7U); // channel 6 means 0110, so bits 7 and 8 equals to 1
+	ADC1->SQR1 |= (1U << 8U);
+
+	/* Disable ADC deep power down */
+	ADC1->CR &= ~CR_DEEPPWD;
+
+	/* Enable ADC internal regulator */
+	ADC1->CR |= CR_ADVREGEN;
+
+	/* Start ADC calibration */
+	ADC1->CR |= CR_ADCAL;
+
+	/* Enable ADC */
+	ADC1->CR |= CR_ADEN;
+}
+
+void ADC_Start_Conversion(void)
+{
+	ADC1->CR |= CR_ADSTART;
+}
+
+uint32_t ADC_Read(void)
+{
+	/* Wait for End-of-conversion flag */
+	while(!(ADC1->ISR & ISR_EOC));
+
+	/* Read the result */
+	return ADC1->DR;
+}

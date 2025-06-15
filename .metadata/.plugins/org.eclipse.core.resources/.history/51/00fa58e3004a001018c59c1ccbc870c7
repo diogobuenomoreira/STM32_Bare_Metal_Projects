@@ -1,0 +1,20 @@
+/*
+ * adc.c
+ *
+ *  Created on: Jun 15, 2025
+ *      Author: moreirad
+ */
+
+#include "stm32l4xx.h"
+#include "adc.h"
+
+
+void ADC_Init(void)
+{
+	/* Configure the ADC GPIO pin */
+
+
+	/* Configure the ADC GPIO pin */
+
+}
+

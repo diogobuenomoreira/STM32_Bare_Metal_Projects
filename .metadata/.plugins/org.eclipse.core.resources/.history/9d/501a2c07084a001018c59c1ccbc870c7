@@ -1,0 +1,49 @@
+/*
+ * adc.c
+ *
+ *  Created on: Jun 15, 2025
+ *      Author: moreirad
+ */
+
+#include "stm32l4xx.h"
+#include "adc.h"
+
+#define GPIOAEN		(1U << 0U)
+#define ADCEN		(1U << 13U)
+
+void ADC_Init(void)
+{
+	/* Enable clock access to GPIOA */
+	RCC->AHB2ENR |= GPIOAEN;
+
+	/* Configure the ADC GPIO pin (PA1 as analog input) */
+	GPIOA->MODER |= (1U << 2U);
+	GPIOA->MODER |= (1U << 3U);
+
+	/* Enable clock access to ADC1 */
+	RCC->AHB2ENR |= ADCEN;
+
+	/* Set continuous conversion mode */
+
+	/* Set sequence length */
+
+	/* Set ADC channel and rank */
+
+	/* Disable ADC deep power down */
+
+	/* Enable ADC internal regulator */
+
+	/* Start ADC calibration */
+
+	/* Enable ADC */
+}
+
+void ADC_Start_Conversion(void)
+{
+
+}
+
+uint32_t ADC_Read(void)
+{
+
+}

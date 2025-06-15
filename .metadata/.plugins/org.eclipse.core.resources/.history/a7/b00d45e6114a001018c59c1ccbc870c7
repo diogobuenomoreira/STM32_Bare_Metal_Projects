@@ -1,0 +1,43 @@
+
+#include "stm32l4xx.h"
+#include "fpu.h"
+#include "uart.h"
+#include <stdio.h>
+#include "timebase.h"
+#include "bsp.h"
+#include "adc.h"
+#include <inttypes.h>
+
+uint32_t adc_value;
+
+int main(void)
+{
+	/* Enable FPU */
+	FPU_Enable();
+
+	/* Initialize UART */
+	Debug_UART_Init();
+
+	/* Initialize Timebase */
+	Timebase_Init();
+
+	/* Initialize LED */
+	LED_Init();
+
+	/* Initialize button */
+	Button_Init();
+
+	/* Initialize ADC */
+	ADC_Init();
+	Delay(1); // Delay to allow the properly initialization
+
+	/* ADC start conversion */
+	ADC_Start_Conversion();
+
+	while(1)
+	{
+		adc_value = ADC_Read();
+		printf("Valor: %" PRIu32 "\n", adc_value);
+		Delay(1);
+	}
+}

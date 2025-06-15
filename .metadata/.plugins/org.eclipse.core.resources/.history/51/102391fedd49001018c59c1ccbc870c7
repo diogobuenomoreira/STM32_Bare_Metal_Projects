@@ -1,0 +1,15 @@
+/*
+ * bsp.h
+ *
+ *  Created on: Jun 15, 2025
+ *      Author: moreirad
+ */
+
+#ifndef BSP_H_
+#define BSP_H_
+
+void LED_Init(void);
+
+
+
+#endif /* BSP_H_ */

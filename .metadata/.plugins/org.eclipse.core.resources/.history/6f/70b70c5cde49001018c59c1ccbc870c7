@@ -1,0 +1,40 @@
+/*
+ * bsp.c
+ *
+ *  Created on: Jun 15, 2025
+ *      Author: moreirad
+ */
+
+#include "stm32l4xx.h"
+#include "bsp.h"
+
+#define GPIOAEN		(1U << 0U)
+#define PIN5		(1U<<5U)
+#define LED_PIN		PIN5
+
+void LED_Init(void)
+{
+	/* Enable clock access to GPIOA */
+	RCC->AHB2ENR |= GPIOAEN;
+
+	/* Set PA5 mode to output mode */
+	GPIOA->MODER |= (1U<<10U);
+	GPIOA->MODER &= ~(1U<<11U);
+}
+
+void LED_On(void)
+{
+	/* Set PA5 high */
+}
+
+void LED_Off(void)
+{
+	/* Set PA5 low */
+}
+
+void Button_Init(void)
+{
+	/* Enable clock acces to PORTC */
+
+	/* Set PC13 as an input pin */
+}

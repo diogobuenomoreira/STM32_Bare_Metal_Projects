@@ -1,0 +1,13 @@
+/*
+ * timebase.h
+ *
+ *  Created on: Jun 14, 2025
+ *      Author: moreirad
+ */
+
+#ifndef TIMEBASE_H_
+#define TIMEBASE_H_
+
+void Timebase_Init(void);
+
+#endif /* TIMEBASE_H_ */

@@ -1,0 +1,22 @@
+
+#include "stm32l4xx.h"
+
+#define GPIOAEN		(1U<<0U)
+#define PIN5		(1U<<5U)
+#define LED_PIN	PIN5
+
+int main(void)
+{
+	/* Enable clock access to GPIOA */
+    RCC->AHB2ENR |= GPIOAEN;
+
+    /* Set PA5 to output mode */
+    GPIOA->MODER |= (1U<<10U);
+    GPIOA->MODER &= ~(1U<<11U);
+
+	while(1)
+	{
+		GPIOA->ODR ^= LED_PIN;
+		for(int i=0; i < 100000; i++);
+	}
+}

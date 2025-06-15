@@ -1,0 +1,37 @@
+/*
+ * timebase.c
+ *
+ *  Created on: Jun 14, 2025
+ *      Author: moreirad
+ */
+
+#include "stm32l4xx.h"
+#include "timebase.h"
+
+#define CTRL_ENABLE		(1U << 0U)
+#define CTRL_TICKINT	(1U << 1U)
+#define CTRL_CLKSRC		(1U << 2U)
+#define CTRL_COUNTFLAG	(1U << 16U)
+
+#define ONE_SEC_LOAD	4000000 // 4Mhz
+
+void Timebase_Init(void)
+{
+	/* Disable global interrupts */
+	__disable_irq();
+
+	/* Load the timer with number of clock cycles per second */
+	SysTick->LOAD = ONE_SEC_LOAD - 1; // -1 because we count from zero
+
+	/* Clear systick current value register */
+	SysTick->VAL = 0;
+
+	/* Select internal clock source */
+
+	/* Enable interrupt */
+
+	/* Enable systick */
+
+	/* Enable global interrupt */
+	__enable_irq();
+}

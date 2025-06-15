@@ -1,0 +1,5 @@
+../Src/uart.c:26:5:__io_putchar	1
+../Src/uart.c:32:6:Debug_UART_Init	1
+../Src/uart.c:60:13:UART_Write	2
+../Src/uart.c:69:17:UART_Compute_Baudrate	1
+../Src/uart.c:74:13:UART_Set_Baudrate	1

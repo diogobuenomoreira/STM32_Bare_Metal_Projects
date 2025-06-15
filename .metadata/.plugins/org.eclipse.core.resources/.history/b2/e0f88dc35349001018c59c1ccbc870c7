@@ -1,0 +1,19 @@
+
+#include "stm32l4xx.h"
+#include "fpu.h"
+#include "uart.h"
+
+
+int main(void)
+{
+	/* Enable FPU */
+	FPU_Enable();
+
+	/* Initialize UART */
+	UART_Init();
+
+	while(1)
+	{
+
+	}
+}
